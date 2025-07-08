@@ -92,6 +92,38 @@ class DatasetPlasmidLengthParser(CLIParser):
             help = "Output directory. Defaults to %(default)s."
         )
 
+class DatasetANIParser(CLIParser):
+
+    def __init__(self):
+        super().__init__(
+            "ANI",
+            description="Plots heatmaps of ANI between chromosomes and \
+between plasmids. Clusters plasmid sequences according to ANI."
+        )
+
+    def add_arguments(self, **kwargs):
+
+        self.parser.add_argument(
+            "--input", "-i",
+            type = str,
+            default = "data/predictions.xlsx",
+            help = "Table containing predictions. Defaults to %(default)s."
+        )
+        
+        self.parser.add_argument(
+            "--ani", "-a",
+            type = str,
+            default = "data/ani.tsv",
+            help = "Table containing ANI values. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--output", "-o",
+            type = str,
+            default = "outputs/dataset/dataset.ani",
+            help = "Output directory. Defaults to %(default)s."
+        )
+
         self.parser.add_argument(
             "--taxon", "-t",
             type = str, choices = ["Enterococcus", "Enterobacterales"],
