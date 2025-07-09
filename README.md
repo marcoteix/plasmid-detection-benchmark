@@ -5,3 +5,5 @@ Supporting analysis code for "Circling in on plasmids: benchmarking plasmid dete
 | -------- | ------- | ----------- |
 | Dataset  | dataset.args.fragmentation.py | Compares the number of IS, SR contigs, and plasmid length between plasmids with ARGs and plasmids without ARGs |
 | Dataset  | dataset.plasmid_length.py | Plots the distribution of plasmid lengths in samples with complete hybrid assemblies |
+| Dataset  | dataset.ani.py | Plots heatmaps of ANI between chromosomes and plasmids. Also clusters plasmids based on their alignment fraction |
+| Dataset  | dataset.plsdb.py | Compares the Mash identity to the closest PLSDB plasmids for different taxa |

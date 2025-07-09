@@ -131,3 +131,27 @@ between plasmids. Clusters plasmid sequences according to ANI."
             help = "Target taxon. Must be either \"Enterococcus\" or \
 \"Enterobacterales\". Defaults to \"%(default)s\". "
         )
+
+class DatasetPLSDBParser(CLIParser):
+
+    def __init__(self):
+        super().__init__(
+            "PLSDB",
+            description="Compares the Mash identity to the closest PLSDB plasmids for different taxa."
+        )
+
+    def add_arguments(self, **kwargs):
+
+        self.parser.add_argument(
+            "--input", "-i",
+            type = str,
+            default = "data/predictions.xlsx",
+            help = "Table containing predictions. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--output", "-o",
+            type = str,
+            default = "outputs/dataset/dataset.plsdb",
+            help = "Output directory. Defaults to %(default)s."
+        )
