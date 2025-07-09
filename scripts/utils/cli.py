@@ -155,3 +155,42 @@ class DatasetPLSDBParser(CLIParser):
             default = "outputs/dataset/dataset.plsdb",
             help = "Output directory. Defaults to %(default)s."
         )
+
+class DetectionMetricsParser(CLIParser):
+
+    def __init__(self):
+        super().__init__(
+            "Plasmid detection metrics",
+            description="Computes the performance metrics for plasmid detection \
+tools given their predictions."
+        )
+
+    def add_arguments(self, **kwargs):
+
+        self.parser.add_argument(
+            "--input", "-i",
+            type = str,
+            default = "data/predictions.xlsx",
+            help = "Table containing predictions. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--output", "-o",
+            type = str,
+            default = "outputs/detection/detection.metrics",
+            help = "Output directory. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--niter", "-n",
+            type = int, default = 10,
+            help = "Number of bootstrapping iterations. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--taxon", "-t",
+            type = str, choices = ["Enterococcus", "Enterobacterales"],
+            default = "Enterobacterales",
+            help = "Target taxon. Must be either \"Enterococcus\" or \
+\"Enterobacterales\". Defaults to \"%(default)s\". "
+        )
