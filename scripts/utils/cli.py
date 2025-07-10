@@ -374,3 +374,34 @@ of different sizes (large vs. small)."
             type = int, default = 1000,
             help = "Number of bootstrapping iterations. Defaults to %(default)s."
         )
+
+class ReconstructionMetricsParser(CLIParser):
+
+    def __init__(self):
+        super().__init__(
+            "Plasmid reconstruction metrics",
+            description="Computes the performance metrics for plasmid reconstruction \
+tools given their predictions."
+        )
+
+    def add_arguments(self, **kwargs):
+
+        self.parser.add_argument(
+            "--input", "-i",
+            type = str,
+            default = "data/predictions.xlsx",
+            help = "Table containing predictions. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--output", "-o",
+            type = str,
+            default = "outputs/reconstruction/reconstruction.metrics",
+            help = "Output directory. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--niter", "-n",
+            type = int, default = 100,
+            help = "Number of bootstrapping iterations. Defaults to %(default)s."
+        )

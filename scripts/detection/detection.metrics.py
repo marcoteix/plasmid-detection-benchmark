@@ -21,7 +21,7 @@ report = create_report(outdir, args, "detection.metrics.py")
 
 # Load predictions
 X = pd.read_excel(
-    "data/predictions.xlsx",
+    args.input,
     sheet_name = "Plasmid Detection",
     index_col = [0, 1]
 )
@@ -32,7 +32,7 @@ tools = X.columns.to_list()
 # Load ground-truth and join with predictions
 X = X.join(
         pd.read_excel(
-        "data/predictions.xlsx",
+        args.input,
         sheet_name = "Ground-truth",
         index_col = [0, 1]
     )

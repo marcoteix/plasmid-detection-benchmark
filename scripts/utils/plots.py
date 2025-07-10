@@ -47,6 +47,13 @@ TOOL_ORDER = [
     'PlasmidFinder'
 ]
 
+TOOL_ORDER_RECONSTRUCTION = [
+    "gplas2",
+    "MOB-suite",
+    "HyAsP",
+    "PlasBin-Flow"
+]
+
 TOOL_STYLES = {
     'Centrifuge': "-",
     'PlaScope': "-",

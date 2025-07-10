@@ -12,3 +12,6 @@ Supporting analysis code for "Circling in on plasmids: benchmarking plasmid dete
 | Detection  | detection.sr_contig_length.py | Compares the plasmid detection metrics for SR contigs of different lenghts |
 | Detection  | detection.rep_cluster.py | Compares the plasmid detection metrics for plasmids of different Inc types/rep clusters |
 | Detection  | detection.args.py | Compares the plasmid detection metrics for SR contigs with and without ARGs |
+| Detection  | detection.plasmid_size.py | Compares the plasmid detection metrics for plasmids of different sizes (large vs. small) |
+| Reconstruction  | reconstruction.metrics.py | Calculates plasmid reconstruction metrics from a set of predictions and plots the results |
+
