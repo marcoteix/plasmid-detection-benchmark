@@ -40,7 +40,9 @@ predictions = pd.read_excel(
 X = X.join(predictions)
 
 # Subset target taxon
-X = X[X.Taxon.eq(args.taxon)]
+X = X[
+    X.Taxon.eq(args.taxon)
+]
 
 results = {"With ARGs": {}, "Without ARGs": {}}
     
@@ -60,7 +62,7 @@ for n, X_bt in tqdm(
     results["With ARGs"][n] = pd.concat(
         {
             k: metrics.group_metrics(
-                X_bt[X_bt["Hybrid contig has ARGs"]].copy(), 
+                X_bt[X_bt["SR contig has ARGs"]].copy(), 
                 k, 
                 None, 
                 gt_col = "Ground-truth class"
@@ -73,7 +75,7 @@ for n, X_bt in tqdm(
     results["Without ARGs"][n] = pd.concat(
         {
             k: metrics.group_metrics(
-                X_bt[~X_bt["Hybrid contig has ARGs"]].copy(), 
+                X_bt[~X_bt["SR contig has ARGs"]].copy(), 
                 k, 
                 None, 
                 gt_col = "Ground-truth class"
@@ -140,11 +142,11 @@ summary.sort_index(
 # Get p-values
 
 p_values = {}
-for tool in results.index.get_level_values(1):
+for tool in TOOL_ORDER:
     
     p_values[tool] = {}
 
-    for metric in results.index.get_level_values(2):
+    for metric in np.unique(results.index.get_level_values(2)):
 
         results_subset = results.xs(
             (tool, metric),

@@ -33,7 +33,6 @@ class CLIParser(ABC):
 
         return self.parser.parse_args("" if self.notebook else None)
 
-
 class DatasetArgsISParser(CLIParser):
 
     def __init__(self):
@@ -303,7 +302,7 @@ class DetectionARGsParser(CLIParser):
     def __init__(self):
         super().__init__(
             "Plasmid detection performance as a function of ARG presence",
-            description="Compares the plasmid detection metrics for plasmids \
+            description="Compares the plasmid detection metrics for SR contigs \
 with and without ARGs."
         )
 
@@ -333,6 +332,45 @@ with and without ARGs."
 
         self.parser.add_argument(
             "--niter", "-n",
-            type = int, default = 100,
+            type = int, default = 1000,
+            help = "Number of bootstrapping iterations. Defaults to %(default)s."
+        )
+
+class DetectionPlasmidSizeParser(CLIParser):
+
+    def __init__(self):
+        super().__init__(
+            "Plasmid detection performance as a function of plasmid size",
+            description="Compares the plasmid detection metrics for plasmids \
+of different sizes (large vs. small)."
+        )
+
+    def add_arguments(self, **kwargs):
+
+        self.parser.add_argument(
+            "--input", "-i",
+            type = str,
+            default = "data/predictions.xlsx",
+            help = "Table containing predictions. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--output", "-o",
+            type = str,
+            default = "outputs/detection/detection.plasmid_size",
+            help = "Output directory. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--taxon", "-t",
+            type = str, choices = ["Enterococcus", "Enterobacterales"],
+            default = "Enterobacterales",
+            help = "Target taxon. Must be either \"Enterococcus\" or \
+\"Enterobacterales\". Defaults to \"%(default)s\". "
+        )
+
+        self.parser.add_argument(
+            "--niter", "-n",
+            type = int, default = 1000,
             help = "Number of bootstrapping iterations. Defaults to %(default)s."
         )

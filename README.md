@@ -11,4 +11,4 @@ Supporting analysis code for "Circling in on plasmids: benchmarking plasmid dete
 | Detection  | detection.glm.py | Fits a Logistic Regression model to estimate the contribution of certain plasmid and assembly features to plasmid detection |
 | Detection  | detection.sr_contig_length.py | Compares the plasmid detection metrics for SR contigs of different lenghts |
 | Detection  | detection.rep_cluster.py | Compares the plasmid detection metrics for plasmids of different Inc types/rep clusters |
-| Detection  | detection.args.py | Compares the plasmid detection metrics for plasmids with and without ARGs |
+| Detection  | detection.args.py | Compares the plasmid detection metrics for SR contigs with and without ARGs |
