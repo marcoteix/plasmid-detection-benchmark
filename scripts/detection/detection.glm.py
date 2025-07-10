@@ -1,7 +1,6 @@
 #%%
 import io
 from scripts.utils.cli import DetectionGLMParser
-from scripts.utils.report import create_report
 from scripts.utils.plots import TOOL_CMAP, BEST_TOOLS
 import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
@@ -21,8 +20,6 @@ args = parser.parse()
 
 outdir = Path(args.output)
 outdir.mkdir(exist_ok=True, parents=True)
-
-report = create_report(outdir, args, "detection.glm.py")
 
 ################ Create a feature matrix and label vector ################
 

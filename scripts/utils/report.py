@@ -14,7 +14,7 @@ def create_report(
     print(
         f":::::::::::::::: {program_name} ::::::::::::::::",
         *["\t-" + k + ": " + str(v) for k,v in vars(args).items()],
-        sep = "\t",
+        sep = "\n",
         file = file
     )
 
