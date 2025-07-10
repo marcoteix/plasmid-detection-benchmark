@@ -258,3 +258,42 @@ different lenghts."
             type = int, default = 1000,
             help = "Number of bootstrapping iterations. Defaults to %(default)s."
         )
+
+class DetectionRepClusterParser(CLIParser):
+
+    def __init__(self):
+        super().__init__(
+            "Plasmid detection performance as a function of inc type/rep cluster",
+            description="Compares the plasmid detection metrics for plasmids of \
+different Inc types/rep clusters."
+        )
+
+    def add_arguments(self, **kwargs):
+
+        self.parser.add_argument(
+            "--input", "-i",
+            type = str,
+            default = "data/predictions.xlsx",
+            help = "Table containing predictions. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--output", "-o",
+            type = str,
+            default = "outputs/detection/detection.rep_cluster",
+            help = "Output directory. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--taxon", "-t",
+            type = str, choices = ["Enterococcus", "Enterobacterales"],
+            default = "Enterobacterales",
+            help = "Target taxon. Must be either \"Enterococcus\" or \
+\"Enterobacterales\". Defaults to \"%(default)s\". "
+        )
+
+        self.parser.add_argument(
+            "--niter", "-n",
+            type = int, default = 1000,
+            help = "Number of bootstrapping iterations. Defaults to %(default)s."
+        )

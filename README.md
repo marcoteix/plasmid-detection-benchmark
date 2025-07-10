@@ -9,3 +9,5 @@ Supporting analysis code for "Circling in on plasmids: benchmarking plasmid dete
 | Dataset  | dataset.plsdb.py | Compares the Mash identity to the closest PLSDB plasmids for different taxa |
 | Detection  | detection.metrics.py | Calculates plasmid detection metrics from a set of predictions and plots the results |
 | Detection  | detection.glm.py | Fits a Logistic Regression model to estimate the contribution of certain plasmid and assembly features to plasmid detection |
+| Detection  | detection.sr_contig_length.py | Compares the plasmid detection metrics for SR contigs of different lenghts |
+| Detection  | detection.rep_cluster.py | Compares the plasmid detection metrics for plasmids of different Inc types/rep clusters |
