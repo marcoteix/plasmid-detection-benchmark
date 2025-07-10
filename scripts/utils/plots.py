@@ -32,6 +32,21 @@ TOOL_CMAP = {
 
 BEST_TOOLS = ["PlaScope", "gplas2", "PlasmidEC", "Plasmer"]
 
+TOOL_ORDER = [
+    'Plasmer',
+    'PlaScope',
+    'PlasmidEC',
+    'gplas2',
+    'RFPlasmid',
+    'Platon',
+    'PLASMe',
+    'MOB-recon',
+    'HyAsP',
+    'plASgraph2',
+    'geNomad',
+    'PlasmidFinder'
+]
+
 TOOL_STYLES = {
     'Centrifuge': "-",
     'PlaScope': "-",
