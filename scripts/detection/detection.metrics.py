@@ -2,13 +2,11 @@
 from scripts.utils.cli import DetectionMetricsParser
 from scripts.utils.report import create_report
 from scripts.utils import metrics
-#from scripts.utils.plots import TOOL_CMAP
 import numpy as np
 import pandas as pd
 from matiss import plots
 import seaborn as sns
 import matplotlib.pyplot as plt
-from matplotlib.patches import Ellipse
 from pathlib import Path
 from tqdm import tqdm
 plots.set_style()
@@ -365,5 +363,5 @@ plots.save(
 )
 print(f"Rendered {filepath}.", file = report)
 plt.show()
-# %%
+
 report.close()

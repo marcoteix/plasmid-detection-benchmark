@@ -183,8 +183,33 @@ tools given their predictions."
 
         self.parser.add_argument(
             "--niter", "-n",
-            type = int, default = 10,
+            type = int, default = 1000,
             help = "Number of bootstrapping iterations. Defaults to %(default)s."
+        )
+
+class DetectionGLMParser(CLIParser):
+
+    def __init__(self):
+        super().__init__(
+            "Logistic regression (plasmid detection)",
+            description="Checks for characteristics impacting plasmid detection by \
+fitting a logistic regression model to the predictions of each of the top four tools."
+        )
+
+    def add_arguments(self, **kwargs):
+
+        self.parser.add_argument(
+            "--input", "-i",
+            type = str,
+            default = "data/predictions.xlsx",
+            help = "Table containing predictions. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--output", "-o",
+            type = str,
+            default = "outputs/detection/detection.glm",
+            help = "Output directory. Defaults to %(default)s."
         )
 
         self.parser.add_argument(
