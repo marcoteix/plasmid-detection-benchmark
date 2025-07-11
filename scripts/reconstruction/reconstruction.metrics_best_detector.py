@@ -20,18 +20,10 @@ args = parser.parse()
 outdir = Path(args.output)
 outdir.mkdir(exist_ok=True, parents=True)
 
-report = create_report(outdir, args, "reconstruction.metrics.py")
+report = create_report(outdir, args, "reconstruction.metrics_best_detector.py")
 
 # Load predictions
 X = pd.read_excel(
-    args.input,
-    sheet_name = "Plasmid Reconstruction",
-    index_col = [0, 1]
-).fillna("chromosome")
-
-# Also load predictions using the plasmid detection results from the 
-# best plasmid detection tools
-X_best_detector = pd.read_excel(
     args.input,
     sheet_name = "Plasmid Reconst. (Best Det.)",
     index_col = [0, 1]
@@ -47,18 +39,6 @@ X = X.join(
         sheet_name = "Ground-truth",
         index_col = [0, 1]
     )
-)
-
-# If parsing results for enterococci, replace PlasBin-Flow predictions with
-# the PlasBin-Flow results obtained using the best plasmid detector, as 
-# PlasBin-Flow failed to detect any enterococcal plasmids
-X = X.assign(
-    **{
-        "PlasBin-Flow": X["PlasBin-Flow"].where(
-            X["Taxon"].eq("Enterobacterales"),
-            X_best_detector["PlasBin-Flow"]
-        )
-    }
 )
 
 # Discard incomplete hybrid assemblies
@@ -78,10 +58,8 @@ sd = {}
 mean = {}
 
 print(
-    "Calculating plasmid reconstruction metrics.",
-    "Note that for PlasBin-Flow, we are using predictions for enterococcal plasmids \
-obtained with initial plasmid contig classifications from the best plasmid detection \
-tool (Plasmer), as PlasBin-Flow did not detect any enterococcal plasmid.",
+    "Calculating plasmid reconstruction using predictions obtained with initial plasmid \
+contig classifications from the best plasmid detection tools.",
     sep = "\n",
     file = report
 )
@@ -409,16 +387,25 @@ cmap = {
     )
 }
 
+tool_names = [ 
+    x
+    for x in TOOL_ORDER_RECONSTRUCTION[::-1]
+    if x in results.Tool.unique()
+]
+
 for n, (metric, ax) in enumerate(
     zip(
         metric_names,
         axs.flatten()
     )
 ):
-
+    
+    
+    estimator = lambda x: np.median(x)
+    errorbar = lambda x: np.percentile(x, [2.5, 97.5])
     ylim = (0.8, 1.01)
 
-    for y, tool in enumerate(TOOL_ORDER_RECONSTRUCTION[::-1]):
+    for y, tool in enumerate(tool_names):
 
         for y_gap, taxon in enumerate(taxa):
 
@@ -473,8 +460,8 @@ for n, (metric, ax) in enumerate(
         )
     else:
         ax.set_yticks(
-            np.arange(len(tools)),
-            TOOL_ORDER_RECONSTRUCTION[::-1]
+            np.arange(len(tool_names)),
+            tool_names
         )
 
 # Plot the proportion of perfectly reconstructed plasmids and the proportion
@@ -484,7 +471,7 @@ for n, (ax, col) in enumerate(
     zip(axs[3:], ["pct_pla", "pct_pla_g1"])
 ):
     
-    for y, tool in enumerate(TOOL_ORDER_RECONSTRUCTION[::-1]):
+    for y, tool in enumerate(tool_names):
 
         for y_gap, taxon in enumerate(taxa):
 

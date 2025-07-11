@@ -425,16 +425,47 @@ fitting a linear regression model to the NMI of each of the top four tools."
         )
 
         self.parser.add_argument(
-            "--nmi", "-n",
+            "--output", "-o",
             type = str,
-            default = "outputs/reconstruction/reconstruction.metrics/reconstruction.metrics.tsv",
-            help = "TSV table containing the NMI for each tool and sample. Must be created with \
-reconstruction.metrics.py before running this script. Defaults to %(default)s."
+            default = "outputs/reconstruction/reconstruction.glm",
+            help = "Output directory. Defaults to %(default)s."
+        )
+
+class ReconstructionARGsParser(CLIParser):
+
+    def __init__(self):
+        super().__init__(
+            "Plasmid reconstruction performance as a function of ARG presence",
+            description="Compares the plasmid reconstruction metrics for plasmids with and \
+without ARGs."
+        )
+
+    def add_arguments(self, **kwargs):
+
+        self.parser.add_argument(
+            "--input", "-i",
+            type = str,
+            default = "data/predictions.xlsx",
+            help = "Table containing predictions. Defaults to %(default)s."
         )
 
         self.parser.add_argument(
             "--output", "-o",
             type = str,
-            default = "outputs/reconstruction/reconstruction.glm",
+            default = "outputs/reconstruction/reconstruction.args",
             help = "Output directory. Defaults to %(default)s."
+        )
+
+        self.parser.add_argument(
+            "--taxon", "-t",
+            type = str, choices = ["Enterococcus", "Enterobacterales"],
+            default = "Enterobacterales",
+            help = "Target taxon. Must be either \"Enterococcus\" or \"Enterobacterales\". \
+Defaults to \"%(default)s\". "
+        )
+
+        self.parser.add_argument(
+            "--niter", "-n",
+            type = int, default = 1000,
+            help = "Number of bootstrapping iterations. Defaults to %(default)s."
         )

@@ -11,8 +11,9 @@ Supporting analysis code for "Circling in on plasmids: benchmarking plasmid dete
 | Detection  | detection.glm.py | Fits a Logistic Regression model to estimate the contribution of certain plasmid and assembly features to plasmid detection |
 | Detection  | detection.sr_contig_length.py | Compares the plasmid detection metrics for SR contigs of different lenghts |
 | Detection  | detection.rep_cluster.py | Compares the plasmid detection metrics for plasmids of different Inc types/rep clusters |
-| Detection  | detection.args.py | Compares the plasmid detection metrics for SR contigs with and without ARGs |
-| Detection  | detection.plasmid_size.py | Compares the plasmid detection metrics for plasmids of different sizes (large vs. small) |
-| Reconstruction  | reconstruction.metrics.py | Calculates plasmid reconstruction metrics from a set of predictions and plots the results |
-| Reconstruction  | reconstruction.glm.py | Fits a Linear Regression model to estimate the contribution of certain assembly features to plasmid reconstruction |
-
+| Detection | detection.args.py | Compares the plasmid detection metrics for SR contigs with and without ARGs |
+| Detection | detection.plasmid_size.py | Compares the plasmid detection metrics for plasmids of different sizes (large vs. small) |
+| Reconstruction | reconstruction.metrics.py | Calculates plasmid reconstruction metrics from a set of predictions and plots the results |
+| Reconstruction | reconstruction.glm.py | Fits a Linear Regression model to estimate the contribution of certain assembly features to plasmid reconstruction |
+| Reconstruction | reconstruction.metrics_best_detector.py | Calculates plasmid reconstruction metrics from a set of predictions, using initial contig classifications from the best plasmid detection tools, and plots the results |
+| Reconstruction | reconstruction.args.py | Compares plasmid reconstruction metrics for plasmids with and without ARGs |
