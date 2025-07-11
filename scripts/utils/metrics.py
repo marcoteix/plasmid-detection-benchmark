@@ -150,8 +150,14 @@ def plot_results(results: pd.DataFrame, metrics: list, figdir: Path, filtering: 
     plt.savefig(figdir.joinpath("metrics"+suffix+".png"), bbox_inches="tight")
     plt.show()
 
-def binning_metrics_per_sample(X: pd.DataFrame, metrics: dict, tools: list, samples: list, 
-    filtering: str = "intersection", drop_multilabel: bool = False):
+def binning_metrics_per_sample(
+    X: pd.DataFrame, 
+    metrics: dict, 
+    tools: list, 
+    samples: list, 
+    filtering: str = "intersection", 
+    drop_multilabel: bool = False
+):
 
     assert filtering in ["intersection", "non_na"]
 
@@ -163,7 +169,7 @@ def binning_metrics_per_sample(X: pd.DataFrame, metrics: dict, tools: list, samp
 
             def auxf(x):
                 if x[tool].isna().all(): return 0
-                y_true, y_pred = multilabel_to_single_label(x["hybrid_contig"], x[tool].astype(str))
+                y_true, y_pred = multilabel_to_single_label(x["Hybrid contig ID"], x[tool].astype(str))
                 return m_func(y_true, y_pred)
 
             # Filter contigs according to the selected scheme
@@ -180,7 +186,7 @@ def binning_metrics_per_sample(X: pd.DataFrame, metrics: dict, tools: list, samp
             if drop_multilabel:
                 logging.debug(f"Dropping frag-only contigs with multiple GT bins or multiple predicted bins by tool '{tool}'.")
                 n_init = len(X_filtered)
-                X_filtered = X_filtered[~X_filtered["hybrid_contig"].apply(lambda x: ";" in x) & ~ X_filtered[tool].astype(str) \
+                X_filtered = X_filtered[~X_filtered["Hybrid contig ID"].apply(lambda x: ";" in x) & ~ X_filtered[tool].astype(str) \
                     .apply(lambda x: ";" in x)]
                 logging.debug(f"Dropped {n_init-len(X_filtered)} frag-only contigs.")
             else:
@@ -188,7 +194,7 @@ def binning_metrics_per_sample(X: pd.DataFrame, metrics: dict, tools: list, samp
                 X_filtered = explode_results(X_filtered, tool)
 
             tool_results[tool, metric] = X_filtered.reset_index() \
-                .groupby("Sample").apply(auxf, include_groups=False)
+                .groupby("Sample ID").apply(auxf, include_groups=False)
         results.append(tool_results)
     return pd.concat(results, axis=1)
 

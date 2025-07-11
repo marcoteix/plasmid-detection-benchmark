@@ -14,4 +14,5 @@ Supporting analysis code for "Circling in on plasmids: benchmarking plasmid dete
 | Detection  | detection.args.py | Compares the plasmid detection metrics for SR contigs with and without ARGs |
 | Detection  | detection.plasmid_size.py | Compares the plasmid detection metrics for plasmids of different sizes (large vs. small) |
 | Reconstruction  | reconstruction.metrics.py | Calculates plasmid reconstruction metrics from a set of predictions and plots the results |
+| Reconstruction  | reconstruction.glm.py | Fits a Linear Regression model to estimate the contribution of certain assembly features to plasmid reconstruction |
 
