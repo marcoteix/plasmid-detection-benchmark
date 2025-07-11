@@ -1,25 +1,25 @@
 #!/bin/bash
 
-set -e
-
 read -r -d "" DESCRIPTION << EOF
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-                
-                Circling in on plasmids: benchmarking plasmid detection and 
-               reconstruction tools for short-read data from diverse species
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-Marco Teixeira, Selia Souque, Colin J. Worby, Terrance Shea, Nicoletta Commins, Joshua T. Smith,
-Arjun M. Miklos, Thomas Abeel, Ashlee M. Earl, and Abigail L. Manson
-
-Replicating analyses...
-Make sure you are running this script from ./plasmid-detection-benchmark
-
-This will take a while. This is your excuse to get up and go for a walk! 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n
+                                                                                                \n
+                Circling in on plasmids: benchmarking plasmid detection and                     \n
+               reconstruction tools for short-read data from diverse species                    \n
+                                                                                                \n
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n
+                                                                                                \n
+Marco Teixeira, Selia Souque, Colin J. Worby, Terrance Shea, Nicoletta Commins, Joshua T. Smith,\n
+Arjun M. Miklos, Thomas Abeel, Ashlee M. Earl, and Abigail L. Manson\n
+\n
+Replicating analyses...\n
+Make sure you are running this script from ./plasmid-detection-benchmark\n
+\n
+This will take a while. This is your excuse to get up and go for a walk!\n
 EOF
 
 echo $DESCRIPTION
+
+set -e
 
 PREDICTIONS="data/predictions.xlsx"
 ANI="data/ani.tsv"
