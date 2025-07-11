@@ -1,8 +1,8 @@
 #%%
-from scripts.utils.cli import ReconstructionARGsParser
-from scripts.utils.report import create_report
-from scripts.utils.plots import TOOL_ORDER_RECONSTRUCTION, TOOL_CMAP
-from scripts.utils import metrics
+from utils.cli import ReconstructionARGsParser
+from utils.report import create_report
+from utils.plots import TOOL_ORDER_RECONSTRUCTION, TOOL_CMAP
+from utils import metrics
 from scipy.stats import false_discovery_control
 from sklearn import metrics as skm
 from scipy import stats as sps
@@ -53,9 +53,9 @@ X = X[
 ]
 
 # For Enterococcus, ignore PlasBin-Flow as it did not find any plasmids
-tools = TOOL_ORDER_RECONSTRUCTION
+tools = TOOL_ORDER_RECONSTRUCTION.copy()
 if args.taxon == "Enterococcus":
-    tools = tools.remove("PlasBin-Flow")
+    tools.remove("PlasBin-Flow")
 
 # Keep track of results for each class (ARGs vs. no ARGs)
 results = {}

@@ -1,7 +1,7 @@
 #%%
-from scripts.utils.cli import DetectionRepClusterParser
-from scripts.utils.plots import BEST_TOOLS, TOOL_CMAP
-from scripts.utils import metrics
+from utils.cli import DetectionRepClusterParser
+from utils.plots import BEST_TOOLS, TOOL_CMAP
+from utils import metrics
 from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd

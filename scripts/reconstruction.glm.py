@@ -1,7 +1,7 @@
 #%%
-from scripts.utils.cli import ReconstructionGLMParser
-from scripts.utils.report import create_report
-from scripts.utils.metrics import binning_metrics_per_sample
+from utils.cli import ReconstructionGLMParser
+from utils.report import create_report
+from utils.metrics import binning_metrics_per_sample
 from sklearn import metrics as skm
 import statsmodels.api as sm
 import pandas as pd

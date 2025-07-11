@@ -1,8 +1,8 @@
 #%%
-from scripts.utils.cli import DetectionSRContigLengthParser
-from scripts.utils.report import create_report
-from scripts.utils import metrics
-from scripts.utils.plots import BEST_TOOLS, TOOL_CMAP
+from utils.cli import DetectionSRContigLengthParser
+from utils.report import create_report
+from utils import metrics
+from utils.plots import BEST_TOOLS, TOOL_CMAP
 from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd

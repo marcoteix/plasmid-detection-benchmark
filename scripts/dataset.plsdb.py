@@ -1,6 +1,6 @@
 #%%
-from scripts.utils.cli import DatasetPLSDBParser
-from scripts.utils.report import create_report
+from utils.cli import DatasetPLSDBParser
+from utils.report import create_report
 import numpy as np
 import pandas as pd
 from pathlib import Path 

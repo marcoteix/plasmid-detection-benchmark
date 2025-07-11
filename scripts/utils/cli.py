@@ -459,7 +459,7 @@ without ARGs."
         self.parser.add_argument(
             "--taxon", "-t",
             type = str, choices = ["Enterococcus", "Enterobacterales"],
-            default = "Enterobacterales",
+            default = "Enterococcus",
             help = "Target taxon. Must be either \"Enterococcus\" or \"Enterobacterales\". \
 Defaults to \"%(default)s\". "
         )

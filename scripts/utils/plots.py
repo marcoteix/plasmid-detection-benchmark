@@ -11,8 +11,7 @@ from pathlib import Path
 import numpy as np
 from colorcet import glasbey
 from matiss import plots
-
-from scripts.utils import metrics
+from utils import metrics
 
 TOOL_CMAP = {
     'PlaScope': (0.21568627450980393, 0.49411764705882355, 0.7215686274509804),

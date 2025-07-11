@@ -1,7 +1,7 @@
 #%%
 import io
-from scripts.utils.cli import DetectionGLMParser
-from scripts.utils.plots import TOOL_CMAP, BEST_TOOLS
+from utils.cli import DetectionGLMParser
+from utils.plots import TOOL_CMAP, BEST_TOOLS
 import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score

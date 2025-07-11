@@ -1,8 +1,8 @@
 #%%
-from scripts.utils.cli import ReconstructionMetricsParser
-from scripts.utils.report import create_report
-from scripts.utils.plots import TOOL_ORDER_RECONSTRUCTION
-from scripts.utils import metrics
+from utils.cli import ReconstructionMetricsParser
+from utils.report import create_report
+from utils.plots import TOOL_ORDER_RECONSTRUCTION
+from utils import metrics
 from scipy.stats import false_discovery_control
 from sklearn import metrics as skm
 import numpy as np

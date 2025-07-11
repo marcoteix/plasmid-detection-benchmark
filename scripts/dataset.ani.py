@@ -1,6 +1,6 @@
 #%%
-from scripts.utils.cli import DatasetANIParser
-from scripts.utils.report import create_report
+from utils.cli import DatasetANIParser
+from utils.report import create_report
 import pandas as pd
 from matiss import plots as plots
 import seaborn as sns

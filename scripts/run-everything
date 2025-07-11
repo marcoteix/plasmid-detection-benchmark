@@ -1,0 +1,170 @@
+#!/bin/bash
+
+set -e
+
+read -r -d "" DESCRIPTION << EOF
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                
+                Circling in on plasmids: benchmarking plasmid detection and 
+               reconstruction tools for short-read data from diverse species
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Marco Teixeira, Selia Souque, Colin J. Worby, Terrance Shea, Nicoletta Commins, Joshua T. Smith,
+Arjun M. Miklos, Thomas Abeel, Ashlee M. Earl, and Abigail L. Manson
+
+Replicating analyses...
+Make sure you are running this script from ./plasmid-detection-benchmark
+
+This will take a while. This is your excuse to get up and go for a walk! 
+EOF
+
+echo $DESCRIPTION
+
+PREDICTIONS="data/predictions.xlsx"
+ANI="data/ani.tsv"
+NITER=2 # Number of bootstrap iterations
+
+# Description of the dataset
+
+for taxon in "Enterobacterales" "Enterococcus"; do 
+
+    echo "Generating ANI heatmaps for $taxon plasmids and chromosomes (dataset.ani.py)..."
+    outdir=outputs/dataset/ani/$taxon
+    python scripts/dataset.ani.py \
+        --input $PREDICTIONS \
+        --ani $ANI \
+        --output $outdir \
+        --taxon $taxon 
+    echo "Done! Saved outputs to $outdir"
+
+    echo "Checking for diferences in the number of insertion sequences, short-read contigs, and \
+plasmid length, between plasmids in finished hybrid assemblies with and without ARGs \
+(dataset.args.fragmentation)..."
+    outdir=outputs/dataset/args_fragmentation/$taxon
+    python scripts/dataset.args.fragmentation.py \
+        --input $PREDICTIONS \
+        --output $outdir \
+        --taxon $taxon 
+    echo "Done! Saved outputs to $outdir"
+
+done
+
+# Get plasmid length distributions
+echo "Plotting plasmid length distributions (dataset.plasmid_length.py)..."
+outdir=outputs/dataset/plasmid_length
+python scripts/dataset.plasmid_length.py \
+    --input $PREDICTIONS \
+    --output $outdir
+echo "Done! Saved outputs to $outdir"
+
+echo "Comparing Mash identities to the closest PLSDB plasmid (dataset.plsdb.py)..."
+outdir=outputs/dataset/plsdb
+python scripts/dataset.plsdb.py \
+    --input $PREDICTIONS \
+    --output $outdir
+echo "Done! Saved outputs to $outdir"
+
+# Plasmid detection
+
+echo "Calculating plasmid detection metrics (detection.metrics.py)..."
+outdir=outputs/detection/metrics
+python scripts/detection.metrics.py \
+    --input $PREDICTIONS \
+    --output $outdir \
+    --niter $NITER
+echo "Done! Saved outputs to $outdir"
+
+for taxon in "Enterobacterales" "Enterococcus"; do 
+
+    echo "Fitting a logistic regression model for $taxon (detection.glm.py)..."
+    outdir=outputs/detection/glm/$taxon
+    python scripts/detection.glm.py \
+        --input $PREDICTIONS \
+        --output $outdir \
+        --taxon $taxon
+    echo "Done! Saved outputs to $outdir"
+
+    echo "Comparing plasmid detection results between $taxon plasmids of different \
+sizes (detection.plasmid_size.py)..."
+    outdir=outputs/detection/plasmid_size/$taxon
+    python scripts/detection.plasmid_size.py \
+        --input $PREDICTIONS \
+        --output $outdir \
+        --taxon $taxon \
+        --niter $NITER 
+    echo "Done! Saved outputs to $outdir"    
+
+    echo "Comparing plasmid detection results between $taxon SR contigs of different \
+lengths (detection.sr_contig_length.py)..."
+    outdir=outputs/detection/sr_contig_length/$taxon
+    python scripts/detection.sr_contig_length.py \
+        --input $PREDICTIONS \
+        --output $outdir \
+        --taxon $taxon \
+        --niter $NITER 
+    echo "Done! Saved outputs to $outdir"    
+
+    echo "Comparing plasmid detection results between different types of $taxon \
+plasmids (detection.rep_cluster.py)..."
+    outdir=outputs/detection/rep_cluster/$taxon
+    python scripts/detection.rep_cluster.py \
+        --input $PREDICTIONS \
+        --output $outdir \
+        --taxon $taxon \
+        --niter $NITER 
+    echo "Done! Saved outputs to $outdir" 
+
+    echo "Comparing plasmid detection results between $taxon SR contigs with and \
+without args (detection.args.py)..."
+    outdir=outputs/detection/args/$taxon
+    python scripts/detection.args.py \
+        --input $PREDICTIONS \
+        --output $outdir \
+        --taxon $taxon \
+        --niter $NITER 
+    echo "Done! Saved outputs to $outdir" 
+
+done
+
+# Plasmid reconstruction
+
+echo "Calculating plasmid reconstruction metrics (reconstruction.metrics.py)..."
+outdir=outputs/reconstruction/metrics
+python scripts/reconstruction.metrics.py \
+    --input $PREDICTIONS \
+    --output $outdir \
+    --niter $NITER 
+echo "Done! Saved outputs to $outdir" 
+
+echo "Calculating plasmid reconstruction metrics using initial predictions from \
+the best plasmid detection tools (reconstruction.metrics_best_detector.py)..."
+outdir=outputs/reconstruction/metrics_best_detector
+python scripts/reconstruction.metrics_best_detector.py \
+    --input $PREDICTIONS \
+    --output $outdir \
+    --niter $NITER 
+echo "Done! Saved outputs to $outdir" 
+
+echo "Fitting a linear regression model to the results (reconstruction.glm.py)..."
+outdir=outputs/reconstruction/glm
+python scripts/reconstruction.glm.py \
+    --input $PREDICTIONS \
+    --output $outdir
+echo "Done! Saved outputs to $outdir" 
+
+for taxon in "Enterobacterales" "Enterococcus"; do 
+
+    echo "Comparing plasmid reconstruction results between $taxon plasmids with and \
+without args (reconstruction.args.py)..."
+    outdir=outputs/reconstruction/args/$taxon
+    python scripts/reconstruction.args.py \
+        --input $PREDICTIONS \
+        --output $outdir \
+        --taxon $taxon \
+        --niter $NITER 
+    echo "Done! Saved outputs to $outdir" 
+
+done
+
+echo "All done! See you next time."

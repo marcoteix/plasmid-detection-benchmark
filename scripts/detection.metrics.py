@@ -1,7 +1,7 @@
 #%%
-from scripts.utils.cli import DetectionMetricsParser
-from scripts.utils.report import create_report
-from scripts.utils import metrics
+from utils.cli import DetectionMetricsParser
+from utils.report import create_report
+from utils import metrics
 import numpy as np
 import pandas as pd
 from matiss import plots

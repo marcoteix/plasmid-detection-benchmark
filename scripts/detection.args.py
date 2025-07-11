@@ -1,7 +1,7 @@
 #%%
-from scripts.utils.cli import DetectionARGsParser
-from scripts.utils.plots import TOOL_ORDER
-from scripts.utils import metrics
+from utils.cli import DetectionARGsParser
+from utils.plots import TOOL_ORDER
+from utils import metrics
 from scipy.stats import false_discovery_control
 import numpy as np
 import pandas as pd

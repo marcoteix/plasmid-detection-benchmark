@@ -1,6 +1,6 @@
 #%%
-from scripts.utils.cli import DatasetPlasmidLengthParser
-from scripts.utils.report import create_report
+from utils.cli import DatasetPlasmidLengthParser
+from utils.report import create_report
 from matiss import plots  
 import pandas as pd 
 from pathlib import Path
