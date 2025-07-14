@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import ReconstructionMetricsParser
 from utils.report import create_report
 from utils.plots import TOOL_ORDER_RECONSTRUCTION
@@ -510,7 +510,7 @@ plots.save(
     outdir.joinpath("reconstruction.metrics"),
     ["eps", "png"]
 )
-plt.show()
+
 
 report.close()
-# %%
+

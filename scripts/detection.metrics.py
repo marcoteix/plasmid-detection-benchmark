@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import DetectionMetricsParser
 from utils.report import create_report
 from utils import metrics
@@ -362,6 +362,6 @@ plots.save(
     format = ["png", "eps"]
 )
 print(f"Rendered {filepath}.", file = report)
-plt.show()
+
 
 report.close()

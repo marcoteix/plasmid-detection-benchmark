@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import DatasetANIParser
 from utils.report import create_report
 import pandas as pd
@@ -174,7 +174,7 @@ plots.save(
     filepath,
     ["eps", "png"]
 )
-plt.show()
+
 print(f"Rendered {filepath}.", file = report)
 
 # Plot ANI between plasmids
@@ -245,7 +245,7 @@ plots.save(
     filepath,
     ["eps", "png"]
 )
-plt.show()
+
 print(f"Rendered {filepath}.", file = report)
 
 resolution_lims = (0.1, 3.0)
@@ -331,4 +331,3 @@ print(
 
 report.close()
 
-#%%

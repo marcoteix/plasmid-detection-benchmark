@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import DetectionARGsParser
 from utils.plots import TOOL_ORDER
 from utils import metrics
@@ -271,5 +271,5 @@ plots.save(
     outdir.joinpath("detection.args"),
     ["eps", "png"]
 )
-plt.show()
-# %%
+
+

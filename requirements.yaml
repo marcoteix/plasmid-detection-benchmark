@@ -1,0 +1,22 @@
+name: 
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - colorcet
+  - fsspec
+  - joblib
+  - matplotlib
+  - networkx
+  - numpy
+  - openpyxl
+  - pandas
+  - python==3.9
+  - pyvis
+  - scikit-learn
+  - scipy
+  - seaborn
+  - tqdm
+  - weasyprint
+  - pip:
+    - matiss==1.0.0

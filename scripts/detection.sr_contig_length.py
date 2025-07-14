@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import DetectionSRContigLengthParser
 from utils.report import create_report
 from utils import metrics
@@ -248,8 +248,8 @@ print(
     f"Rendered {filename}.",
     file = report
 )
-plt.show()
+
 
 report.close()
 
-# %%
+

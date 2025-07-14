@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import DatasetArgsISParser
 from utils.report import create_report
 import numpy as np
@@ -12,6 +12,8 @@ plots.set_style()
 
 parser = DatasetArgsISParser()
 args = parser.parse()
+
+args.taxon = "Enterococcus"
 
 # Create an output directory
 outdir = Path(args.output)
@@ -49,9 +51,20 @@ X = X[X["Has complete hybrid assembly?"]]
 # Explode rows with multiple hybrid contigs and keep one row per plasmid.
 # Then join with the number of IS per plasmid
 X = X.assign(
-        hybrid_contig = X["Hybrid contig ID"].str.split(";")
-    ).explode("hybrid_contig") \
-    .reset_index() \
+        hybrid_contig = X["Hybrid contig ID"].str.split(";"),
+        **{
+            "Hybrid contig length": 
+                X["Hybrid contig length"].astype(str).str.split(";"),
+            "Number of insertion sequences (IS) in hybrid contig": 
+                X["Number of insertion sequences (IS) in hybrid contig"].astype(str).str.split(";")
+        }
+    ).explode(
+        [
+            "hybrid_contig", 
+            "Hybrid contig length",
+            "Number of insertion sequences (IS) in hybrid contig"
+        ]
+    ).reset_index() \
     .drop_duplicates(["Sample ID", "hybrid_contig"])
  
 # Exclude chromosomes
@@ -165,7 +178,7 @@ plots.save(
     filepath,
     ["eps", "png"]
 )
-plt.show()
+
 
 print(
     f"Rendered {filepath}.",
@@ -354,9 +367,9 @@ plots.save(
     filepath,
     format = ["eps", "png"]
 )
-plt.show()
+
 print(f"Rendered {filepath}.", file = report)
 
 report.close()
 
-# %%
+

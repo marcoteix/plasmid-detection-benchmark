@@ -1,4 +1,4 @@
-#%%
+
 import io
 from utils.cli import DetectionGLMParser
 from utils.plots import TOOL_CMAP, BEST_TOOLS
@@ -486,7 +486,7 @@ plots.save(
     outdir.joinpath("detection.glm.coeffs"),
     format = ["png", "eps"]
 )
-plt.show()
 
 
-# %%
+
+

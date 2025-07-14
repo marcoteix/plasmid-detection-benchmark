@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import ReconstructionGLMParser
 from utils.report import create_report
 from utils.metrics import binning_metrics_per_sample
@@ -242,4 +242,4 @@ print(
 )
 
 report.close()
-# %%
+

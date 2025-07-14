@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import DatasetPLSDBParser
 from utils.report import create_report
 import numpy as np
@@ -119,7 +119,7 @@ if p_value <= 0.05:
 filepath = str(outdir.joinpath("plsdb.identity"))
 plots.save(filepath, ["eps", "png"])
 print(f"Rendered {filepath}.", file = report)
-plt.show()
+
 
 report.close()
-#%%
+

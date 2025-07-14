@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import DatasetPlasmidLengthParser
 from utils.report import create_report
 from matiss import plots  
@@ -110,9 +110,9 @@ for ax, taxon in zip(
 
 filepath = str(outdir.joinpath("dataset.plasmid_length"))
 plots.save(filepath, ["eps", "png"])
-plt.show()
+
 
 print(f"Rendered {filepath}.", file = report)
 
 report.close()
-# %%
+

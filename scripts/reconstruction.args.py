@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import ReconstructionARGsParser
 from utils.report import create_report
 from utils.plots import TOOL_ORDER_RECONSTRUCTION, TOOL_CMAP
@@ -640,7 +640,7 @@ plots.save(
     ["eps", "png"]
 )
 print(f"Rendered {filename}.", file = report)
-plt.show()
+
 
 report.close()
-# %%
+

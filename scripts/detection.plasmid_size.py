@@ -1,4 +1,4 @@
-#%%
+
 from utils.cli import DetectionPlasmidSizeParser
 from utils.plots import TOOL_ORDER
 from utils import metrics
@@ -238,6 +238,6 @@ plots.save(
     ["png", "eps"]
 )
 
-plt.show()
 
-# %%
+
+

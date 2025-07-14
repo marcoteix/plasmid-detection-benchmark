@@ -23,7 +23,7 @@ set -e
 
 PREDICTIONS="data/predictions.xlsx"
 ANI="data/ani.tsv"
-NITER=2 # Number of bootstrap iterations
+NITER=1000 # Number of bootstrap iterations
 
 # Description of the dataset
 
